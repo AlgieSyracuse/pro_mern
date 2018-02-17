@@ -1,3 +1,19 @@
+/*
+start MongoDB : sudo service mongod start
+restart :  sudo service mongod restart
+stop serivce: sudo service mongod stop
+
+start this js:  mongo path/...js
+======================================
+
+to validate in shell:
+    mongo
+    use issuetracker   // initialized by getDB('issuetracker')
+    show collections  //-> issues
+    db.issues.find({}).pretty()
+*/
+
+
 db = new Mongo().getDB('issuetracker');
 
 db.issues.remove({}); // delete all original documents
@@ -18,3 +34,4 @@ db.issues.insertMany([
 db.issues.createIndex({ status: 1 });  // 1 : asending order
 db.issues.createIndex({ owner: 1 });
 db.issues.createIndex({ created: 1 });
+
