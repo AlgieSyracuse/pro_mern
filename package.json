@@ -4,6 +4,7 @@
   "description": "basic practice MERN stack",
   "main": "index.js",
   "scripts": {
+    "debug": "node --nolazy --inspect-brk=3000 server.js",
     "start": "nodemon -w server.js server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "babel src --presets react,es2015 --out-dir static",

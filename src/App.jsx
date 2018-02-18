@@ -10,6 +10,8 @@ class IssueFilter extends React.Component {
   }
 }
 
+// if a component has nothing but a render, it is recommended to 
+// written as function, for performance reason, [from book: stateless component]
 const IssueRow = (props) => (
   <tr>
     <td>{props.issue._id}</td>
@@ -22,8 +24,10 @@ const IssueRow = (props) => (
   </tr>
 )
 
+// also a stateless component 
 function IssueTable(props) {
-  const issueRows = props.issues.map(issue => <IssueRow key={issue._id} issue={issue} />)
+  const issueRows = props.issues.map(issue => <IssueRow 
+    key={issue._id} issue={issue} />);
   return (
     <table className="bordered-table">
       <thead>
@@ -52,7 +56,7 @@ class IssueAdd extends React.Component {
     e.preventDefault();
     var form = document.forms.issueAdd;
 
-    // this is a function huandler calling component IssueList's method createIssue
+    // callback! to IssueList's method createIssue
     this.props.createIssue({
       owner: form.owner.value,
       title: form.title.value,
@@ -80,7 +84,6 @@ class IssueList extends React.Component {
   constructor() {
     super();
     this.state = { issues: [] };
-
     this.createIssue = this.createIssue.bind(this);
   }
 

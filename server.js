@@ -90,7 +90,7 @@ app.post('/api/issues', (req, res)=>{
     // db... insert
     db.collection('issues').insertOne(newIssue).then( result => 
         db.collection('issues').find({_id: result.inertedId}).limit(1).next()
-    ).then(newIssue => {
+    ).then(() => {
         res.json(newIssue);
     }).catch( err => {
         console.log(err);

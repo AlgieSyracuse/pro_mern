@@ -35,6 +35,10 @@ var IssueFilter = function (_React$Component) {
   return IssueFilter;
 }(React.Component);
 
+// if a component has nothing but a render, it is recommended to 
+// written as function, for performance reason, [from book: stateless component]
+
+
 var IssueRow = function IssueRow(props) {
   return React.createElement(
     'tr',
@@ -77,9 +81,11 @@ var IssueRow = function IssueRow(props) {
   );
 };
 
+// also a stateless component 
 function IssueTable(props) {
   var issueRows = props.issues.map(function (issue) {
-    return React.createElement(IssueRow, { key: issue._id, issue: issue });
+    return React.createElement(IssueRow, {
+      key: issue._id, issue: issue });
   });
   return React.createElement(
     'table',
@@ -153,7 +159,7 @@ var IssueAdd = function (_React$Component2) {
       e.preventDefault();
       var form = document.forms.issueAdd;
 
-      // this is a function huandler calling component IssueList's method createIssue
+      // callback! to IssueList's method createIssue
       this.props.createIssue({
         owner: form.owner.value,
         title: form.title.value,
@@ -196,7 +202,6 @@ var IssueList = function (_React$Component3) {
     var _this3 = _possibleConstructorReturn(this, (IssueList.__proto__ || Object.getPrototypeOf(IssueList)).call(this));
 
     _this3.state = { issues: [] };
-
     _this3.createIssue = _this3.createIssue.bind(_this3);
     return _this3;
   }
