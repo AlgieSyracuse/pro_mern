@@ -1,2 +1,4 @@
 node_modules
-static/App.js
+static/*.js
+static/*.map
+dist

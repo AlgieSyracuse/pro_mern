@@ -8,13 +8,13 @@
             "type": "node",
             "request": "launch",
             "name": "Launch via NPM",
-            "program": "${workspaceFolder}/server.js",
+            "cwd": "${workspaceFolder}",
             "runtimeExecutable": "npm",
             "runtimeArgs": [
                 "run-script",
                 "debug"
             ],
-            "port": 3000
-        },
+            "port": 8000
+        }
     ]
 }

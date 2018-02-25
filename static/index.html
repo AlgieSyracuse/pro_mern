@@ -3,13 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>Pro MERN Stack</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react-dom.js"></script>
-  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
-  -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.13.0/polyfill.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script>
+  <title>MERN localhost:8000</title>
   <style>
     table.bordered-table th, td {border: 1px solid silver; padding: 4px;}
     table.bordered-table {border-collapse: collapse};
@@ -17,10 +11,16 @@
   </head>
 
 <body>
-  <div id="contents"></div>    <!-- this is where our component will appear -->
+  <div id="contents">
+    <!-- this is where our component will appear -->
+  </div>    
 
-  <script src="/App.js"></script>
-
+  <!-- 
+    put <script> to end of <body>, otherwise, dom-erroring
+      https://stackoverflow.com/questions/26566317/invariant-violation-registercomponent-target-container-is-not-a-dom-elem
+  -->
+  <script src="/vendor.bundle.js"></script>
+  <script src="/app.bundle.js"></script>
 </body>
 
 </html>

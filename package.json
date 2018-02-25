@@ -4,23 +4,46 @@
   "description": "basic practice MERN stack",
   "main": "index.js",
   "scripts": {
-    "debug": "node --nolazy --inspect-brk=3000 server.js",
-    "start": "nodemon -w server.js server.js",
+    "start-db": "sudo service mongod start",
+    "init-db": "mongo ./script/init.mongo.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "babel src --presets react,es2015 --out-dir static",
-    "watch": "babel src --presets react,es2015 --out-dir static --watch"
+    "debug": "node --nolazy --inspect-brk=8000 ./dist/server.js",
+    "compile": "webpack",
+    "watch": "webpack-dev-server --hot --inline",
+    "start": "nodemon -w dist dist/server.js",
+    "compile-server": "babel server --presets es2015-node --out-dir dist --source-maps",
+    "watch-server": "babel server --presets es2015-node --out-dir dist --source-maps --watch",
+    "dev-all": "npm run watch & npm run watch-server & npm start",
+    "start-hook": "nodemon -w server server/start_hook.js",
+    "dev-all-hook": "npm run watch & npm run start-hook",
+    "lint": "eslint --ext js,jsx src server webpack.config.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
-    "mongodb": "^3.0.2"
+    "mongodb": "^3.0.2",
+    "source-map-support": "^0.5.3"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2015-node": "^6.1.1",
     "babel-preset-react": "^6.24.1",
-    "nodemon": "^1.14.12"
+    "babel-register": "^6.26.0",
+    "eslint": "^4.18.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "nodemon": "^1.14.12",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.11.1",
+    "whatwg-fetch": "^2.0.3"
   }
 }
