@@ -50,6 +50,7 @@ export default class IssueList extends React.Component {
     super();
     this.state = { issues: [] };
     this.createIssue = this.createIssue.bind(this);
+    this.setFilter = this.setFilter.bind(this);
   }
 
   componentDidMount() {
@@ -63,6 +64,14 @@ export default class IssueList extends React.Component {
     const newSearch = this.props.location.search;
     if (oldSearch === newSearch) return;
     this.loadData();
+  }
+
+  // pass query parameter via withRouter, router.push => trigger=> componentDidUpdate
+
+  setFilter(queryStr) {
+    // v3: this.props.router.push({ pathname: this.props.location.pathname, search: queryStr });
+    // v4:    https://stackoverflow.com/questions/42701129/how-to-push-to-history-in-react-router-v4
+    this.props.history.push({ pathname: this.props.history.pathname, search: queryStr });
   }
 
   loadData() {
@@ -119,7 +128,7 @@ export default class IssueList extends React.Component {
     return (
       <div>
         <h1>Issue Tracker</h1>
-        <IssueFilter />
+        <IssueFilter setFilter={this.setFilter} />
         <hr />
         <IssueTable issues={this.state.issues} />
         <hr />
@@ -130,5 +139,6 @@ export default class IssueList extends React.Component {
 }
 
 IssueList.propTypes = {
-  location: PropTypes.isRequired, // new standard usage
+  history: PropTypes.object.isRequired, // new standard usage
+  router: PropTypes.object,
 };

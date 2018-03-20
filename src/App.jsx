@@ -13,7 +13,7 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Switch, Redirect, HashRouter, Route } from 'react-router-dom';
+import { Switch, Redirect, HashRouter, Route, withRouter } from 'react-router-dom';
 
 import IssueList from './IssueList.jsx';
 import IssueEdit from './IssueEdit.jsx';
@@ -23,12 +23,13 @@ const NoMatch = () => <p> Page Not Found </p>;
 
 // using HashRouter, only for legacy, recommending BrowserRouter,
 // <Switch> must be used in new version
+// withRouter to pass the HashRouter to IssueList also, it wil use {path, search} inside
 const RoutedApp = () => (
   <HashRouter>
     <Switch>
       <Redirect exact from="/" to="/issues" />
       <Route path="/issues/:id" component={IssueEdit} />
-      <Route path="/issues" component={IssueList} />
+      <Route path="/issues" component={withRouter(IssueList)} />
       <Route path="*" component={NoMatch} />
     </Switch>
   </HashRouter>

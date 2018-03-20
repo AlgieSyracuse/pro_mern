@@ -14,5 +14,5 @@ export default class IssueEdit extends React.Component { // eslint-disable-line
 }
 
 IssueEdit.propTypes = {
-  params: PropTypes.isRequired, // new standard usage
+  params: PropTypes.object.isRequired, // new standard usage
 };
