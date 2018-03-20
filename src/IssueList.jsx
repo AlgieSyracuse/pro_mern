@@ -66,7 +66,7 @@ export default class IssueList extends React.Component {
     this.loadData();
   }
 
-  // pass query parameter via withRouter, router.push => trigger=> componentDidUpdate
+  // pass query parameter via withRouter, history.push => trigger=> componentDidUpdate
 
   setFilter(queryStr) {
     // v3: this.props.router.push({ pathname: this.props.location.pathname, search: queryStr });
