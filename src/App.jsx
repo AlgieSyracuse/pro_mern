@@ -13,14 +13,34 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Switch, Redirect, HashRouter, Route } from 'react-router-dom';
 
 import IssueList from './IssueList.jsx';
+import IssueEdit from './IssueEdit.jsx';
 
 const contentNode = document.getElementById('contents');
+const NoMatch = () => <p> Page Not Found </p>;
 
-ReactDOM.render(<IssueList />, contentNode); // Render the component inside the content Node
+// using HashRouter, only for legacy, recommending BrowserRouter,
+// <Switch> must be used in new version
+const RoutedApp = () => (
+  <HashRouter>
+    <Switch>
+      <Redirect exact from="/" to="/issues" />
+      <Route path="/issues/:id" component={IssueEdit} />
+      <Route path="/issues" component={IssueList} />
+      <Route path="*" component={NoMatch} />
+    </Switch>
+  </HashRouter>
+);
+
+ReactDOM.render(<RoutedApp />, contentNode); // Render RoutedApp component
+
+// -- < deprecated > --
+// ReactDOM.render(<IssueList />, contentNode); // Render the component inside the content Node
 
 // hot increasing replace of app.bundle.js
+
 if (module.hot) {
   module.hot.accept();
 }

@@ -4,7 +4,7 @@ module.exports = {
   // seperate two bundles (entries), 1 app.bundles.js, 2 vendor.bundle.js
   entry: {
     app: './src/App.jsx',
-    vendor: ['react', 'react-dom', 'whatwg-fetch', 'babel-polyfill'],
+    vendor: ['react', 'react-dom', 'whatwg-fetch', 'babel-polyfill', 'react-router-dom'],
   },
   output: {
     path: `${__dirname}/static`,

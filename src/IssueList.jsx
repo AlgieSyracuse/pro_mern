@@ -1,6 +1,8 @@
 // @ts-nocheck
 import React from 'react';
 import 'whatwg-fetch';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import IssueAdd from './IssueAdd.jsx';
 import IssueFilter from './IssueFilter.jsx';
@@ -10,7 +12,7 @@ import IssueFilter from './IssueFilter.jsx';
 // written as function, for performance reason, [from book: stateless component]
 const IssueRow = props => (
   <tr>
-    <td>{props.issue._id}</td>
+    <td><Link to={`/issues/${props.issue._id}`}> {props.issue._id.substr(-4)} </Link></td>
     <td>{props.issue.status}</td>
     <td>{props.issue.owner}</td>
     <td>{props.issue.created.toDateString()}</td>
@@ -55,9 +57,17 @@ export default class IssueList extends React.Component {
     this.loadData();
   }
 
+  // whenever any property of the component changes, eg location.search
+  componentDidUpdate(prevProps) {
+    const oldSearch = prevProps.location.search;
+    const newSearch = this.props.location.search;
+    if (oldSearch === newSearch) return;
+    this.loadData();
+  }
+
   loadData() {
     // using GET /api/issues to retrieve all list data
-    fetch('/api/issues').then((response) => {
+    fetch(`/api/issues${this.props.location.search}`).then((response) => {
       if (response.ok) {
         response.json().then((data) => {
           // console.log('Total count of records: ', data._metadata.total_count);
@@ -118,3 +128,7 @@ export default class IssueList extends React.Component {
     );
   }
 }
+
+IssueList.propTypes = {
+  location: PropTypes.isRequired, // new standard usage
+};
