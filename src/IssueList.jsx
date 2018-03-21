@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React from 'react';
 import 'whatwg-fetch';
-import { Link } from 'react-router-dom';
+import { Link, Switch, HashRouter as Router, Route, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import IssueAdd from './IssueAdd.jsx';
@@ -62,6 +62,7 @@ export default class IssueList extends React.Component {
   componentDidUpdate(prevProps) {
     const oldSearch = prevProps.location.search;
     const newSearch = this.props.location.search;
+    // alert(`new search : ${newSearch}, old search: ${newSearch}`);
     if (oldSearch === newSearch) return;
     this.loadData();
   }
@@ -71,6 +72,7 @@ export default class IssueList extends React.Component {
   setFilter(queryStr) {
     // v3: this.props.router.push({ pathname: this.props.location.pathname, search: queryStr });
     // v4:    https://stackoverflow.com/questions/42701129/how-to-push-to-history-in-react-router-v4
+    // alert(this.props);
     this.props.history.push({ pathname: this.props.history.pathname, search: queryStr });
   }
 
@@ -127,7 +129,6 @@ export default class IssueList extends React.Component {
   render() {
     return (
       <div>
-        <h1>Issue Tracker</h1>
         <IssueFilter setFilter={this.setFilter} />
         <hr />
         <IssueTable issues={this.state.issues} />

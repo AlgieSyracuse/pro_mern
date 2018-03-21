@@ -20,7 +20,7 @@ export default class IssueFilter extends React.Component { // eslint-disable-lin
   }
   clearFilter(e) {
     e.preventDefault();
-    this.props.setFilter({});
+    this.props.setFilter('');
   }
 
   render() {

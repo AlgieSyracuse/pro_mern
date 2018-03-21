@@ -13,29 +13,63 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Switch, Redirect, HashRouter, Route, withRouter } from 'react-router-dom';
+import { Switch, Redirect, HashRouter as Router, Route, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import IssueList from './IssueList.jsx';
 import IssueEdit from './IssueEdit.jsx';
 
-const contentNode = document.getElementById('contents');
+
 const NoMatch = () => <p> Page Not Found </p>;
+const contentNode = document.getElementById('contents');
+
+// frame with header, footer
+
+const App = () => (
+  <div>
+    <div className="header">
+      <h1>Issue Tracker</h1>
+    </div>
+    <div className="contents">
+      <Router>
+        <Switch>
+          <Route path="/issues/:id" component={IssueEdit} />
+          <Route path="/issues" component={IssueList} />
+          <Route exact path="/" component={IssueList} />
+          <Route path="*" component={NoMatch} />
+        </Switch>
+      </Router>
+    </div>
+    <div className="footer">
+      Full source code available at this
+      <a href="https://github.com/vasansr/pro-mern-stack">
+      GitHub repository
+      </a>.
+    </div>
+  </div>
+);
+
 
 // using HashRouter, only for legacy, recommending BrowserRouter,
 // <Switch> must be used in new version
 // withRouter to pass the HashRouter to IssueList also, it wil use {path, search} inside
-const RoutedApp = () => (
-  <HashRouter>
-    <Switch>
-      <Redirect exact from="/" to="/issues" />
-      <Route path="/issues/:id" component={IssueEdit} />
-      <Route path="/issues" component={withRouter(IssueList)} />
-      <Route path="*" component={NoMatch} />
-    </Switch>
-  </HashRouter>
-);
+// nested routers, children routers use relative path to parent's
 
-ReactDOM.render(<RoutedApp />, contentNode); // Render RoutedApp component
+/* not works for v4
+const RoutedApp = () => (
+  <Router history={hashHistory} >
+    <Redirect from="/" to="/issues" />
+    <Route path="/" component={App} >
+      <Route path="issues" component={withRouter(IssueList)} />
+      <Route path="issues/:id" component={IssueEdit} />
+      <Route path="*" component={NoMatch} />
+    </Route>
+  </Router>
+);
+*/
+
+
+ReactDOM.render(<App />, contentNode); // Render RoutedApp component
 
 // -- < deprecated > --
 // ReactDOM.render(<IssueList />, contentNode); // Render the component inside the content Node
