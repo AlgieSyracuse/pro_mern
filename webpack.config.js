@@ -32,6 +32,7 @@ module.exports = {
         target: 'http://localhost:3000',
       },
     },
+    historyApiFallback: true, // chap8-BrowserHistory
   },
   devtool: 'source-map',
 };

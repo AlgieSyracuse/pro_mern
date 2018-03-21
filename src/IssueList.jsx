@@ -72,8 +72,8 @@ export default class IssueList extends React.Component {
   setFilter(queryStr) {
     // v3: this.props.router.push({ pathname: this.props.location.pathname, search: queryStr });
     // v4:    https://stackoverflow.com/questions/42701129/how-to-push-to-history-in-react-router-v4
-    // alert(this.props);
-    this.props.history.push({ pathname: this.props.history.pathname, search: queryStr });
+    console.log(this.props);
+    this.props.history.push({ pathname: this.props.location.pathname, search: queryStr });
   }
 
   loadData() {

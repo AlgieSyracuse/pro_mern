@@ -13,7 +13,7 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Switch, Redirect, HashRouter as Router, Route, withRouter } from 'react-router-dom';
+import { Switch, Redirect, BrowserRouter as Router, Route, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import IssueList from './IssueList.jsx';

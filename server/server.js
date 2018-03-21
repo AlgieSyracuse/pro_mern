@@ -26,6 +26,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import { MongoClient } from 'mongodb';
 import Issue from './issue';
+import path from 'path'; // using path.resolve to get absolute path
 
 SourceMapSupport.install();
 const app = express();
@@ -61,6 +62,9 @@ app.get('/api/issues', (req, res) => {
     });
 });
 
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve('static/index.html'));
+});
 
 // POST REST api
 app.post('/api/issues', (req, res) => {
