@@ -1,0 +1,10 @@
+ this is a fake, large log to test git commands
+
+
+
+major for git rm --cache <this log>
+
+
+best,
+
+end.
