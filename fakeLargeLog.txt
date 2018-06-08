@@ -3,12 +3,15 @@
 
 
 major for git rm --cache <this log>
+<<<<<<< HEAD
 ******
 
 Large blocks
 Large blocks
 
 ******
+=======
+>>>>>>> a831640fb67850164f08c4e3584d60722b271e2e
 
 
 best,
